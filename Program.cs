@@ -10,31 +10,26 @@ namespace snake
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            sadman border = new sadman(60,20);
+            sadman border = new sadman(60, 20);
             sadman position = new sadman(20, 5);
             Random r = new Random();
-            sadman snackforsnake = new sadman(r.Next(1, border.X-1), r.Next(1, border.Y-1));
+            sadman snackforsnake = new sadman(r.Next(1, border.X - 1), r.Next(1, border.Y - 1));
             int delayPerMilli = 1;
             lessgo moveDir = lessgo.down;
 
             List<sadman> poshis = new List<sadman>();
             int TailLength = 1;
 
-
             while (true)
             {
                 Console.Clear();
                 position.Applydir(moveDir);
 
-
-
-
-                for (int y = 0; y<border.Y; y++)
+                for (int y = 0; y < border.Y; y++)
                 {
-                    for (int x = 0; x<border.X; x++)
+                    for (int x = 0; x < border.X; x++)
                     {
                         sadman Csadman = new sadman(x, y);
 
@@ -42,11 +37,11 @@ namespace snake
                         {
                             Console.Write("DDDD");
                         }
-                        else if (snackforsnake.Equals(Csadman)||poshis.Contains(Csadman))
+                        else if (snackforsnake.Equals(Csadman) || poshis.Contains(Csadman))
                         {
                             Console.Write("a");
                         }
-                        else if (x==0||y==0||x==border.X-1||y==border.Y-1)
+                        else if (x == 0 || y == 0 || x == border.X - 1 || y == border.Y - 1)
                         {
                             Console.Write("|");
                         }
@@ -58,23 +53,21 @@ namespace snake
                     Console.WriteLine();
                 }
 
-                if (poshis.Equals(snackforsnake))
+                if (position.Equals(snackforsnake))
                 {
                     TailLength++;
-                    snackforsnake = new sadman(r.Next(1, border.X-1), r.Next(1, border.Y-1));
+                    snackforsnake = new sadman(r.Next(1, border.X - 1), r.Next(1, border.Y - 1));
                 }
 
                 poshis.Add(new sadman(position.X, position.Y));
 
-                if (poshis.Count>TailLength)
+                if (poshis.Count > TailLength)
+                {
                     poshis.RemoveAt(0);
-
-
-
-
+                }
 
                 DateTime time = DateTime.Now;
-                while((DateTime.Now - time).Milliseconds < delayPerMilli)
+                while ((DateTime.Now - time).Milliseconds < delayPerMilli)
                 {
                     if (Console.KeyAvailable)
                     {
@@ -83,17 +76,25 @@ namespace snake
                         switch (key)
                         {
                             case ConsoleKey.LeftArrow:
+                            {
                                 moveDir = lessgo.left;
                                 break;
+                            }
                             case ConsoleKey.RightArrow:
+                            {
                                 moveDir = lessgo.right;
                                 break;
+                            }
                             case ConsoleKey.UpArrow:
+                            {
                                 moveDir = lessgo.up;
                                 break;
+                            }
                             case ConsoleKey.DownArrow:
+                            {
                                 moveDir = lessgo.down;
                                 break;
+                            }
                         }
                     }
                 }
