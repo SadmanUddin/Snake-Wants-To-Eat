@@ -44,7 +44,7 @@ namespace snake
                         }
                         else if (snackforsnake.Equals(Csadman)||poshis.Contains(Csadman))
                         {
-                            Console.WriteLine("a");
+                            Console.Write("a");
                         }
                         else if (x==0||y==0||x==border.X-1||y==border.Y-1)
                         {
